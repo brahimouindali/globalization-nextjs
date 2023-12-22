@@ -81,6 +81,10 @@ const Page = ({
           href="https://cdn.usefathom.com"
           rel="preconnect"
         />
+        <meta
+          name="google-site-verification"
+          content="3-Of8uHTJ0Iyj4_buN7_wp_-i2LYd16mIgd4gALRSFE"
+        />
         {url && <link href={canonical} rel="canonical" />}
         <meta content={router.locale} property="og:locale" />
         <meta content={formattedTitle} property="og:title" />
