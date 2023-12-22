@@ -1,11 +1,15 @@
 export default {
   username: {
-    en: "username",
-    sp: "username in spanish",
+    en: "Username",
+    sp: "Nombre de usuario",
   },
   password: {
-    en: "password",
-    sp: "password in spanish",
+    en: "Password",
+    sp: "Contraseña",
+  },
+  language: {
+    en: "Language",
+    sp: "idioma",
   },
   description: {
     en: "This is a simple example of globalization in nextjs using a custom hook",
