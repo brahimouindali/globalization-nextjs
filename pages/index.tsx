@@ -1,12 +1,17 @@
-import Head from "next/head";
 import { useRouter } from "next/router";
+import { Roboto } from "next/font/google";
 
-import { Inter } from "next/font/google";
-import styles from "@/styles/Home.module.css";
-import { useTranslation } from "@/hooks/useTranslation";
+import { ProductJsonLd } from "next-seo";
+
 import Page from "@/components/Page";
 
-const inter = Inter({ subsets: ["latin"] });
+import styles from "@/styles/Home.module.css";
+import { useTranslation } from "@/hooks/useTranslation";
+
+const roboto = Roboto({
+  subsets: ["latin"],
+  weight: ["300", "500", "700"],
+});
 
 export default function Home() {
   const router = useRouter();
@@ -31,7 +36,7 @@ export default function Home() {
       image="/images/banner.png"
       date={new Date().toString()}
     >
-      <main className={`${styles.main} ${inter.className}`}>
+      <main className={`${styles.main} ${roboto.className}`}>
         <div className={styles.form_group}>
           <label className={styles.label} htmlFor={language}>
             {language}
@@ -75,6 +80,44 @@ export default function Home() {
 
         <p className={styles.description}>{description}</p>
       </main>
+      <ProductJsonLd
+        aggregateRating={{
+          ratingValue: "5.0",
+          reviewCount: "7",
+        }}
+        brand="Login page"
+        description="This is a simple login form"
+        images={["https://globalization-nextjs.vercel.app/images/banner.jpg"]}
+        offers={{
+          availability: "http://schema.org/InStock",
+          itemCondition: "http://schema.org/NewCondition",
+          price: "99.99",
+          priceCurrency: "USD",
+          priceValidUntil: "2021-02-12",
+          seller: {
+            name: "Bra Oui",
+          },
+          url: "https://globalization-nextjs.vercel.app",
+        }}
+        productName="Login page"
+        reviews={[
+          {
+            author: {
+              name: "My name",
+              type: "Person",
+            },
+            datePublished: "2023-06-17T03:37:40Z",
+            name: "Shipped my first nextjs app - thank you!",
+            reviewBody:
+              "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Sequi, mollitia deleniti quidem error, officiis voluptatem voluptas accusamus provident quos accusantium, delectus pariatur!",
+            reviewRating: {
+              bestRating: "5",
+              ratingValue: "5",
+              worstRating: "1",
+            },
+          },
+        ]}
+      />
     </Page>
   );
 }
