@@ -1,17 +1,22 @@
 // middleware.ts
-import { NextRequest, NextFetchEvent, NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 
-export async function middleware(request: NextRequest, _next: NextFetchEvent) {
-  const res = NextResponse.next();
-  const countryUsingGEO = request.geo?.country ?? "";
+export async function middleware(request: NextRequest) {
+  const pathname = request.nextUrl.pathname;
+  const shouldHandleLocale = !(
+    pathname.startsWith("/_next") ||
+    pathname.startsWith("/api/") ||
+    pathname.includes(".", pathname.lastIndexOf("/"))
+  );
 
-  const countryusingCFIpcountry = request.headers.get("cf-ipcountry") ?? "";
+  if (shouldHandleLocale) {
+    const countryUsingGEO = request.geo?.country ?? "en";
 
-  res.cookies.set("countryUsingGEO", countryUsingGEO);
-  res.cookies.set("countryusingCFIpcountry", countryusingCFIpcountry);
+    const url = request.nextUrl.clone();
+    url.locale = countryUsingGEO;
 
-  //   if(RESTRICTED_COUNTRIES.includes(country)){
-  //     return NextResponse.rewrite(new URL("/restricted", request.url))
-  //   }
-  return res;
+    return NextResponse.rewrite(url);
+  }
+
+  return NextResponse.next();
 }
