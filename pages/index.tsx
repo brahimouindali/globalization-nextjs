@@ -31,7 +31,7 @@ export default function Home() {
 
   return (
     <Page
-      title="Login Form"
+      title="Login Form _________________"
       description="This is a simple login form"
       image="/images/banner.png"
       date={new Date().toString()}
