@@ -1,0 +1,9 @@
+# *
+User-agent: *
+Allow: /
+
+# Host
+Host: https://globalization-nextjs.vercel.app
+
+# Sitemaps
+Sitemap: https://globalization-nextjs.vercel.app/sitemap.xml
