@@ -35,18 +35,18 @@ export const authOptions: NextAuthOptions = {
   ],
   callbacks: {
     async jwt({ token, account }) {
-      if (account?.type === "oauth") {
-        const res = await fetch("http://localhost:3000/api/token");
-        if (!res.ok) return null;
+      // if (account?.type === "oauth") {
+      //   const res = await fetch("http://localhost:3000/api/token");
+      //   if (!res.ok) return null;
 
-        token.access_token = await res.text();
-      }
+      //   token.access_token = await res.text();
+      // }
 
       return token;
     },
     session({ session, token }) {
       if (token) {
-        session.user.access_token = token.access_token;
+        // session.user.access_token = token.access_token;
       }
 
       return session;
